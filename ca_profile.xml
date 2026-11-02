@@ -1,0 +1,9 @@
+<CommunityApplications>
+  <Profile>
+    Templates for Rerinku View, a self-hosted NVR for ONVIF, RTSP and GB28181 cameras with WebRTC live view, continuous recording, playback and on-server object detection.
+
+    Support: https://github.com/rerinku/rerinku-view/issues
+  </Profile>
+  <Icon>https://raw.githubusercontent.com/rerinku/rerinku-view-unraid-templates/main/icon.svg</Icon>
+  <WebPage>https://rerinku.com</WebPage>
+</CommunityApplications>

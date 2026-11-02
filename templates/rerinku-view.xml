@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>rerinku-view</Name>
+  <Repository>rerinku/view:latest</Repository>
+  <Registry>https://hub.docker.com/r/rerinku/view</Registry>
+  <!-- Host networking is the supported setup: WebRTC uses ephemeral UDP ports,
+       and GB28181 (SIP 5060) and the device MQTT broker (1883) must be reachable
+       on the server's own address. ONVIF discovery also needs the LAN. -->
+  <Network>host</Network>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/rerinku/rerinku-view/issues</Support>
+  <Project>https://rerinku.com</Project>
+  <ReadMe>https://raw.githubusercontent.com/rerinku/rerinku-view-unraid-templates/main/README.md</ReadMe>
+  <TemplateURL>https://raw.githubusercontent.com/rerinku/rerinku-view-unraid-templates/main/templates/rerinku-view.xml</TemplateURL>
+  <Overview>Rerinku View is a self-hosted NVR for IP cameras. It discovers ONVIF cameras or takes RTSP and GB28181 streams, shows live view in the browser with WebRTC, records continuously, plays back from a timeline, and can run object detection on the server. Video, recordings and detection results stay on your Unraid server. FFmpeg and the detection components are built in. No account is needed; an optional access password protects the console.&#13;
+&#13;
+First start: open the WebUI, then add cameras under Devices. Set an access password under Settings before exposing the port beyond your LAN.</Overview>
+  <Category>Security: HomeAutomation:</Category>
+  <ExtraSearchTerms>nvr camera cctv onvif rtsp surveillance webrtc recording ipcam gb28181 detection</ExtraSearchTerms>
+  <WebUI>http://[IP]:[PORT:8080]</WebUI>
+  <Icon>https://raw.githubusercontent.com/rerinku/rerinku-view-unraid-templates/main/icon.svg</Icon>
+  <Screenshot>https://raw.githubusercontent.com/rerinku/rerinku-view/main/assets/screenshots/live-light.webp</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/rerinku/rerinku-view/main/assets/screenshots/playback-light.webp</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/rerinku/rerinku-view/main/assets/screenshots/events-light.webp</Screenshot>
+  <Screenshot>https://raw.githubusercontent.com/rerinku/rerinku-view/main/assets/screenshots/devices-light.webp</Screenshot>
+  <Requires>Ports 8080 (console), 1883 (device MQTT) and 5060 (GB28181) must be free on the server, because the container uses host networking. An optional Intel or AMD GPU (/dev/dri) is used for hardware video decoding.</Requires>
+  <Changes>Initial Unraid template for Rerinku View. Needs an image with PUID/PGID support (newer than 0.1.0).</Changes>
+  <Date>2026-11-02</Date>
+  <License>Freeware, closed source. Bundles FFmpeg (GPLv3) and frp (Apache-2.0); notices are shown in the console under Settings, General, Third-party software.</License>
+  <Config Name="WebUI Port" Target="8080" Default="8080" Mode="tcp" Description="Console and API (HTTP). With host networking this is the port the server listens on; to change it, also change HTTP_ADDR below." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
+  <Config Name="Device MQTT Port" Target="1883" Default="1883" Mode="tcp" Description="Broker that Rerinku cameras connect to. Informational with host networking." Type="Port" Display="advanced" Required="false" Mask="false">1883</Config>
+  <Config Name="GB28181 SIP Port (TCP)" Target="5060" Default="5060" Mode="tcp" Description="GB28181 cameras register here. Informational with host networking." Type="Port" Display="advanced" Required="false" Mask="false">5060</Config>
+  <Config Name="GB28181 SIP Port (UDP)" Target="5060" Default="5060" Mode="udp" Description="GB28181 cameras register here. Informational with host networking." Type="Port" Display="advanced" Required="false" Mask="false">5060</Config>
+  <Config Name="Appdata" Target="/data" Default="/mnt/user/appdata/rerinku-view" Mode="rw" Description="Configuration, database, secret key and the bundled FFmpeg binaries. Keep this on a cache or SSD pool." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/rerinku-view</Config>
+  <Config Name="Recordings" Target="/data/recordings" Default="/mnt/user/rerinku-view" Mode="rw" Description="Where video recordings are stored. Use a share on the array or a large pool; it is handed to the PUID/PGID user on start." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/rerinku-view</Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="User ID the server runs as. 99 is Unraid's nobody. The appdata and recordings folders are handed to this user on start." Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group ID the server runs as. 100 is Unraid's users group." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+  <Config Name="HTTP_ADDR" Target="HTTP_ADDR" Default=":8080" Mode="" Description="Listen address of the console. Change the port here if 8080 is taken (for example :8090), then open the WebUI at that port." Type="Variable" Display="advanced" Required="false" Mask="false">:8080</Config>
+  <Config Name="GPU (optional)" Target="/dev/dri" Default="" Mode="" Description="Intel or AMD GPU for hardware video decoding. Set to /dev/dri to enable. Leave empty if the server has no GPU." Type="Device" Display="advanced" Required="false" Mask="false"></Config>
+</Container>
