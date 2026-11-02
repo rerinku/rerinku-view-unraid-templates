@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>rerinku-view</Name>
-  <Repository>rerinku/view:latest</Repository>
-  <Registry>https://hub.docker.com/r/rerinku/view</Registry>
+  <Repository>ghcr.io/rerinku/view:latest</Repository>
+  <Registry>https://github.com/orgs/rerinku/packages/container/package/view</Registry>
   <!-- Host networking is the supported setup: WebRTC uses ephemeral UDP ports,
        and GB28181 (SIP 5060) and the device MQTT broker (1883) must be reachable
        on the server's own address. ONVIF discovery also needs the LAN. -->

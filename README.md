@@ -2,7 +2,7 @@
 
 Community Applications template for [Rerinku View](https://rerinku.com), a self-hosted NVR for ONVIF, RTSP and GB28181 cameras.
 
-The templates in this repository are MIT licensed. The Rerinku View container image (`rerinku/view` on Docker Hub) is freeware and has its own terms; it bundles FFmpeg (GPLv3) and frp (Apache-2.0).
+The templates in this repository are MIT licensed. The Rerinku View container image (`ghcr.io/rerinku/view`, also on Docker Hub as `rerinku/view`) is freeware and has its own terms; it bundles FFmpeg (GPLv3) and frp (Apache-2.0).
 
 ## Install
 
