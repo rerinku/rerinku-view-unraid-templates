@@ -25,7 +25,7 @@ First start: open the WebUI, then add cameras under Devices. Set an access passw
   <Screenshot>https://raw.githubusercontent.com/rerinku/rerinku-view/main/assets/screenshots/events-light.webp</Screenshot>
   <Screenshot>https://raw.githubusercontent.com/rerinku/rerinku-view/main/assets/screenshots/devices-light.webp</Screenshot>
   <Requires>Ports 8080 (console), 1883 (device MQTT) and 5060 (GB28181) must be free on the server, because the container uses host networking. An optional Intel or AMD GPU (/dev/dri) is used for hardware video decoding.</Requires>
-  <Changes>Initial Unraid template for Rerinku View. Needs an image with PUID/PGID support (newer than 0.1.0).</Changes>
+  <Changes>Initial Unraid template for Rerinku View 0.1.1.</Changes>
   <Date>2026-11-02</Date>
   <License>Freeware, closed source. Bundles FFmpeg (GPLv3) and frp (Apache-2.0); notices are shown in the console under Settings, General, Third-party software.</License>
   <Config Name="WebUI Port" Target="8080" Default="8080" Mode="tcp" Description="Console and API (HTTP). With host networking this is the port the server listens on; to change it, also change HTTP_ADDR below." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
